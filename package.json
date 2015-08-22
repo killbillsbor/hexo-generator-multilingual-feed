@@ -1,7 +1,7 @@
 {
-  "name": "hexo-generator-feed",
+  "name": "hexo-generator-multilingual-feed",
   "version": "1.0.3",
-  "description": "Feed generator plugin for Hexo",
+  "description": "Multilingual feed generator for Hexo",
   "main": "index",
   "scripts": {
     "test": "gulp test"
@@ -12,16 +12,31 @@
   "engines": {
     "node": ">= 0.10.0"
   },
-  "repository": "hexojs/hexo-generator-feed",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ahaasler/hexo-generator-multilingual-feed"
+  },
+  "homepage": "http://hexo.io/",
   "keywords": [
     "hexo",
     "rss",
     "feed",
     "atom",
+    "multilingual",
     "generator"
   ],
-  "author": "Tommy Chen <tommy351@gmail.com> (http://zespia.tw)",
+  "author": "Adrian Haasler García <dev@adrianhaasler.com> (http://www.adrianhaasler.com)",
+  "contributors": [
+    {
+      "name": "Tommy Chen",
+      "email": "tommy351@gmail.com",
+      "url": "http://zespia.tw"
+    }
+  ],
   "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ahaasler/hexo-generator-multilingual-feed/issues"
+  },
   "dependencies": {
     "ejs": "^1.0.0",
     "object-assign": "^3.0.0"
