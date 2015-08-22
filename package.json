@@ -38,20 +38,20 @@
     "url": "https://github.com/ahaasler/hexo-generator-multilingual-feed/issues"
   },
   "dependencies": {
-    "ejs": "^1.0.0",
-    "object-assign": "^3.0.0"
+    "ejs": "^2.3.3",
+    "object-assign": "^4.0.1"
   },
   "devDependencies": {
-    "chai": "^1.9.1",
+    "chai": "^3.2.0",
     "cheerio": "^0.19.0",
     "coveralls": "^2.11.2",
     "gulp": "^3.8.9",
-    "gulp-istanbul": "^0.5.0",
+    "gulp-istanbul": "^0.10.0",
     "gulp-jshint": "^1.8.6",
-    "gulp-load-plugins": "^0.8.0",
+    "gulp-load-plugins": "^1.0.0-rc.1",
     "gulp-mocha": "^2.0.0",
     "hexo": "^3.0.0",
-    "jshint-stylish": "^1.0.0",
+    "jshint-stylish": "^2.0.1",
     "mocha": "^2.0.1",
     "rimraf": "^2.2.8"
   }
