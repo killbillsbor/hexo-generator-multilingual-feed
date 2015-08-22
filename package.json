@@ -4,7 +4,9 @@
   "description": "Multilingual feed generator for Hexo",
   "main": "index",
   "scripts": {
-    "test": "gulp test"
+    "test": "gulp test",
+    "preversion": "npm test",
+    "postversion": "git push && git push --tags"
   },
   "directories": {
     "lib": "./lib"
