@@ -40,7 +40,7 @@
     "url": "https://github.com/ahaasler/hexo-generator-multilingual-feed/issues"
   },
   "dependencies": {
-    "ejs": "^2.3.3",
+    "ejs": "^1.0.0",
     "object-assign": "^4.0.1"
   },
   "devDependencies": {
