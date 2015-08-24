@@ -6,7 +6,7 @@
 [![Dependency Status](https://gemnasium.com/ahaasler/hexo-generator-multilingual-feed.svg)](https://gemnasium.com/ahaasler/hexo-generator-multilingual-feed)
 [![License](https://img.shields.io/badge/license-MIT%20License-blue.svg)](LICENSE)
 
-Multilingual Atom 1.0 or RSS 2.0 feed generator for [Hexo](http://hexo.io).
+Multilingual Atom 1.0 or RSS 2.0 feed generator for [Hexo](http://hexo.io/).
 
 ## Install
 
@@ -25,6 +25,24 @@ feed:
   limit: 20
 ```
 
-- **type** - Feed type. (atom/rss2).
+- **type** - Feed type. (atom/rss2. Default: atom).
 - **path** - Feed path. (Default: atom.xml/rss2.xml).
-- **limit** - Maximum number of posts in the feed (Use `0` or `false` to show all posts).
+- **limit** - Maximum number of posts in the feed (Use `0` or `false` to show all posts. Default: 20).
+
+### Localizable configuration
+
+These are the values that this generator uses and can be [localized](https://github.com/ahaasler/hexo-multilingual#_c-configuration-locales "Configuring locales"):
+
+- feed
+  - type
+  - path
+  - limit
+- title
+- subtitle
+- description
+- author
+- email
+
+## License
+
+MIT
