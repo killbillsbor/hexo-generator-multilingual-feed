@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-  <title>{{ _c('title') | e }}</title>
-  {% if _c('subtitle') %}<subtitle>{{ _c('subtitle') | e }}</subtitle>{% endif %}
+  <title xml:lang="{{ lang }}">{{ _c('title') | e }}</title>
+  {% if _c('subtitle') %}<subtitle xml:lang="{{ lang }}">{{ _c('subtitle') | e }}</subtitle>{% endif %}
   <link href="{{ feed_url | uriencode }}" rel="self"/>
   <link href="{{ url | uriencode }}"/>
   <updated>{{ posts.first().updated.toISOString() }}</updated>
@@ -15,13 +15,13 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   {% for post in posts.toArray() %}
   <entry>
-    <title>{{ post.title | e }}</title>
+    <title xml:lang="{{ post.lang }}">{{ post.title | e }}</title>
     <link href="{{ (url + post.path) | uriencode }}"/>
     <id>{{ url + post.path }}</id>
     <published>{{ post.date.toISOString() }}</published>
     <updated>{{ post.updated.toISOString() }}</updated>
-    <content type="html">{{ post.content | e }}</content>
-    <summary type="html">
+    <content type="html" xml:lang="{{ post.lang }}">{{ post.content | e }}</content>
+    <summary type="html" xml:lang="{{ post.lang }}">
     {% if post.description %}
       {{ post.description | e }}
     {% elif post.excerpt %}
