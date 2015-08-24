@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-  <title>{{ config.title | e }}</title>
-  {% if config.subtitle %}<subtitle>{{ config.subtitle | e }}</subtitle>{% endif %}
+  <title>{{ _c('title') | e }}</title>
+  {% if _c('subtitle') %}<subtitle>{{ _c('subtitle') | e }}</subtitle>{% endif %}
   <link href="{{ feed_url | uriencode }}" rel="self"/>
   <link href="{{ url | uriencode }}"/>
   <updated>{{ posts.first().updated.toISOString() }}</updated>
   <id>{{ url }}</id>
-  {% if config.author %}
+  {% if _c('author') %}
   <author>
-    <name>{{ config.author | e }}</name>
-    {% if config.email %}<email>{{ config.email | e }}</email>{% endif %}
+    <name>{{ _c('author') | e }}</name>
+    {% if _c('email') %}<email>{{ _c('email') | e }}</email>{% endif %}
   </author>
   {% endif %}
   <generator uri="http://hexo.io/">Hexo</generator>

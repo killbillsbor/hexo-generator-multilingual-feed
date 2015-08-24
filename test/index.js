@@ -7,6 +7,7 @@ var fs = require('fs');
 var assign = require('object-assign');
 var cheerio = require('cheerio');
 var _ = require('lodash');
+var _c = require('hexo-multilingual').util._c;
 
 nunjucks.configure({
   autoescape: false,
@@ -106,7 +107,10 @@ describe('Feed generator', function() {
       url: urlConfig.url,
       posts: enPosts.limit(2),
       lang: 'en',
-      feed_url: hexo.config.root + 'en/atom.xml'
+      feed_url: hexo.config.root + 'en/atom.xml',
+      _c: function(value) {
+        return _c(value, 'en', hexo.config, locals);
+      }
     }));
 
     result[1].path.should.eql('es/atom.xml');
@@ -115,7 +119,10 @@ describe('Feed generator', function() {
       url: urlConfig.url,
       posts: esPosts.limit(2),
       lang: 'es',
-      feed_url: hexo.config.root + 'es/atom.xml'
+      feed_url: hexo.config.root + 'es/atom.xml',
+      _c: function(value) {
+        return _c(value, 'es', hexo.config, locals);
+      }
     }));
   });
 
@@ -136,7 +143,10 @@ describe('Feed generator', function() {
       url: urlConfig.url,
       posts: enPosts.limit(2),
       lang: 'en',
-      feed_url: hexo.config.root + 'en/rss2.xml'
+      feed_url: hexo.config.root + 'en/rss2.xml',
+      _c: function(value) {
+        return _c(value, 'en', hexo.config, locals);
+      }
     }));
 
     result[1].path.should.eql('es/rss2.xml');
@@ -145,7 +155,10 @@ describe('Feed generator', function() {
       url: urlConfig.url,
       posts: esPosts.limit(2),
       lang: 'es',
-      feed_url: hexo.config.root + 'es/rss2.xml'
+      feed_url: hexo.config.root + 'es/rss2.xml',
+      _c: function(value) {
+        return _c(value, 'es', hexo.config, locals);
+      }
     }));
   });
 
@@ -167,7 +180,10 @@ describe('Feed generator', function() {
       url: urlConfig.url,
       posts: enPosts,
       lang: 'en',
-      feed_url: hexo.config.root + 'en/atom.xml'
+      feed_url: hexo.config.root + 'en/atom.xml',
+      _c: function(value) {
+        return _c(value, 'en', hexo.config, locals);
+      }
     }));
 
     result[1].path.should.eql('es/atom.xml');
@@ -176,7 +192,10 @@ describe('Feed generator', function() {
       url: urlConfig.url,
       posts: esPosts,
       lang: 'es',
-      feed_url: hexo.config.root + 'es/atom.xml'
+      feed_url: hexo.config.root + 'es/atom.xml',
+      _c: function(value) {
+        return _c(value, 'es', hexo.config, locals);
+      }
     }));
   });
 
