@@ -6,6 +6,7 @@ var pathFn = require('path');
 var fs = require('fs');
 var assign = require('object-assign');
 var cheerio = require('cheerio');
+var _ = require('lodash');
 
 nunjucks.configure({
   autoescape: false,
@@ -32,24 +33,58 @@ describe('Feed generator', function() {
   });
   var Post = hexo.model('Post');
   var generator = require('../lib/generator').bind(hexo);
-  var posts;
+  var enPosts;
+  var esPosts;
   var locals;
 
   before(function() {
+    hexo.config.language = ['en', 'es', 'default'];
+  });
+
+  before(function() {
     return Post.insert([{
-      source: 'foo',
-      slug: 'foo',
+      source: 'one',
+      slug: 'one',
+      title: 'one',
+      lang: 'en',
       date: 1e8
     }, {
-      source: 'bar',
-      slug: 'bar',
+      source: 'two',
+      slug: 'two',
+      title: 'two',
+      lang: 'en',
       date: 1e8 + 1
     }, {
-      source: 'baz',
-      slug: 'baz',
+      source: 'three',
+      slug: 'three',
+      title: 'three',
+      lang: 'en',
+      date: 1e8 - 1
+    }, {
+      source: 'uno',
+      slug: 'uno',
+      title: 'uno',
+      lang: 'es',
+      date: 1e8
+    }, {
+      source: 'dos',
+      slug: 'dos',
+      title: 'dos',
+      lang: 'es',
+      date: 1e8 + 1
+    }, {
+      source: 'tres',
+      slug: 'tres',
+      title: 'tres',
+      lang: 'es',
       date: 1e8 - 1
     }]).then(function(data) {
-      posts = Post.sort('-date');
+      enPosts = Post.sort('-date').filter(function(post) {
+        return post.lang == 'en';
+      });
+      esPosts = Post.sort('-date').filter(function(post) {
+        return post.lang == 'es';
+      });
       locals = hexo.locals.toObject();
     });
   });
@@ -63,12 +98,24 @@ describe('Feed generator', function() {
     hexo.config = assign(hexo.config, urlConfig);
     var result = generator(locals);
 
-    result.path.should.eql('atom.xml');
-    result.data.should.eql(atomTmpl.render({
+    result.length.should.eql(2);
+
+    result[0].path.should.eql('en/atom.xml');
+    result[0].data.should.eql(atomTmpl.render({
       config: hexo.config,
       url: urlConfig.url,
-      posts: posts.limit(2),
-      feed_url: hexo.config.root + 'atom.xml'
+      posts: enPosts.limit(2),
+      lang: 'en',
+      feed_url: hexo.config.root + 'en/atom.xml'
+    }));
+
+    result[1].path.should.eql('es/atom.xml');
+    result[1].data.should.eql(atomTmpl.render({
+      config: hexo.config,
+      url: urlConfig.url,
+      posts: esPosts.limit(2),
+      lang: 'es',
+      feed_url: hexo.config.root + 'es/atom.xml'
     }));
   });
 
@@ -81,12 +128,24 @@ describe('Feed generator', function() {
     hexo.config = assign(hexo.config, urlConfig);
     var result = generator(locals);
 
-    result.path.should.eql('rss2.xml');
-    result.data.should.eql(rss2Tmpl.render({
+    result.length.should.eql(2);
+
+    result[0].path.should.eql('en/rss2.xml');
+    result[0].data.should.eql(rss2Tmpl.render({
       config: hexo.config,
       url: urlConfig.url,
-      posts: posts.limit(2),
-      feed_url: hexo.config.root + 'rss2.xml'
+      posts: enPosts.limit(2),
+      lang: 'en',
+      feed_url: hexo.config.root + 'en/rss2.xml'
+    }));
+
+    result[1].path.should.eql('es/rss2.xml');
+    result[1].data.should.eql(rss2Tmpl.render({
+      config: hexo.config,
+      url: urlConfig.url,
+      posts: esPosts.limit(2),
+      lang: 'es',
+      feed_url: hexo.config.root + 'es/rss2.xml'
     }));
   });
 
@@ -100,12 +159,24 @@ describe('Feed generator', function() {
 
     var result = generator(locals);
 
-    result.path.should.eql('atom.xml');
-    result.data.should.eql(atomTmpl.render({
+    result.length.should.eql(2);
+
+    result[0].path.should.eql('en/atom.xml');
+    result[0].data.should.eql(atomTmpl.render({
       config: hexo.config,
       url: urlConfig.url,
-      posts: posts,
-      feed_url: hexo.config.root + 'atom.xml'
+      posts: enPosts,
+      lang: 'en',
+      feed_url: hexo.config.root + 'en/atom.xml'
+    }));
+
+    result[1].path.should.eql('es/atom.xml');
+    result[1].data.should.eql(atomTmpl.render({
+      config: hexo.config,
+      url: urlConfig.url,
+      posts: esPosts,
+      lang: 'es',
+      feed_url: hexo.config.root + 'es/atom.xml'
     }));
   });
 
@@ -120,10 +191,14 @@ describe('Feed generator', function() {
       hexo.config.path = path;
 
       var result = generator(locals);
-      var $ = cheerio.load(result.data);
 
-      $('feed>id').text().should.eql(valid);
-      $('feed>entry>link').attr('href').should.eql(valid);
+      result.length.should.eql(2);
+
+      _.forEach(result, function(lang) {
+        var $ = cheerio.load(result[0].data);
+        $('feed>id').text().should.eql(valid);
+        $('feed>entry>link').attr('href').should.eql(valid);
+      });
     }
 
     checkURL('http://localhost/', '/', 'http://localhost/');
