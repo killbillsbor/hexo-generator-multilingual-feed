@@ -27,6 +27,12 @@
       {% endif %}
       </description>
       <content:encoded>{{ post.content | e }}</content:encoded>
+      {% for category in post.categories.toArray() %}
+        <category>{{ category.name | e }}</category>
+      {% endfor %}
+      {% for tag in post.tags.toArray() %}
+        <category>{{ tag.name | e }}</category>
+      {% endfor %}
       {% if post.comments %}<comments>{{ (url + post.path) | uriencode }}#disqus_thread</comments>{% endif %}
     </item>
     {% endfor %}
