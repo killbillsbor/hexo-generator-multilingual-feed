@@ -4,7 +4,7 @@
   {% if _c('subtitle') %}<subtitle xml:lang="{{ lang }}">{{ _c('subtitle') | e }}</subtitle>{% endif %}
   <link href="{{ feed_url | uriencode }}" rel="self"/>
   <link href="{{ url | uriencode }}"/>
-  <updated>{{ posts.first().updated.toISOString() }}</updated>
+  <updated>{{ posts.sort('-updated').first().updated.toISOString() }}</updated>
   <id>{{ url }}</id>
   {% if _c('author') %}
   <author>
