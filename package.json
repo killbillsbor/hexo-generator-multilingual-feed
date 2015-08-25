@@ -1,6 +1,6 @@
 {
   "name": "hexo-generator-multilingual-feed",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "Multilingual feed generator for Hexo",
   "main": "index",
   "scripts": {
