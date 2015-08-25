@@ -107,7 +107,7 @@ describe('Feed generator', function() {
       url: urlConfig.url,
       posts: enPosts.limit(2),
       lang: 'en',
-      feed_url: hexo.config.root + 'en/atom.xml',
+      feed_url: urlConfig.url + 'en/atom.xml',
       _c: function(value) {
         return _c(value, 'en', hexo.config, locals);
       }
@@ -119,7 +119,7 @@ describe('Feed generator', function() {
       url: urlConfig.url,
       posts: esPosts.limit(2),
       lang: 'es',
-      feed_url: hexo.config.root + 'es/atom.xml',
+      feed_url: urlConfig.url + 'es/atom.xml',
       _c: function(value) {
         return _c(value, 'es', hexo.config, locals);
       }
@@ -143,7 +143,7 @@ describe('Feed generator', function() {
       url: urlConfig.url,
       posts: enPosts.limit(2),
       lang: 'en',
-      feed_url: hexo.config.root + 'en/rss2.xml',
+      feed_url: urlConfig.url + 'en/rss2.xml',
       _c: function(value) {
         return _c(value, 'en', hexo.config, locals);
       }
@@ -155,7 +155,7 @@ describe('Feed generator', function() {
       url: urlConfig.url,
       posts: esPosts.limit(2),
       lang: 'es',
-      feed_url: hexo.config.root + 'es/rss2.xml',
+      feed_url: urlConfig.url + 'es/rss2.xml',
       _c: function(value) {
         return _c(value, 'es', hexo.config, locals);
       }
@@ -180,7 +180,7 @@ describe('Feed generator', function() {
       url: urlConfig.url,
       posts: enPosts,
       lang: 'en',
-      feed_url: hexo.config.root + 'en/atom.xml',
+      feed_url: urlConfig.url + 'en/atom.xml',
       _c: function(value) {
         return _c(value, 'en', hexo.config, locals);
       }
@@ -192,7 +192,7 @@ describe('Feed generator', function() {
       url: urlConfig.url,
       posts: esPosts,
       lang: 'es',
-      feed_url: hexo.config.root + 'es/atom.xml',
+      feed_url: urlConfig.url + 'es/atom.xml',
       _c: function(value) {
         return _c(value, 'es', hexo.config, locals);
       }
