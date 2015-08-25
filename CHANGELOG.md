@@ -1,6 +1,16 @@
 Changelog
 =========
 
+v1.2.1
+------
+
+***August 25, 2015***
+
+- Fix relative self reference: [\#3](https://github.com/ahaasler/hexo-generator-multilingual-feed/issues/3 "Relative href value on self link").
+- Fix use of `updated` in the last published post instead of last updated.
+- Add `lastBuildDate` RSS element.
+- Add categories and tags in RSS feed.
+
 v1.2.0
 ------
 
