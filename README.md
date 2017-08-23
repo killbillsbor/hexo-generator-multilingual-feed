@@ -25,6 +25,14 @@ feed:
   limit: 20
 ```
 
+Optionally you can add `base`:
+
+``` yaml
+feed:
+  base: https://yourdomain.com/subfolder/
+```
+
+- **base** - Post URL base. It might be useful for web sites in subfolders (optional).
 - **type** - Feed type. (atom/rss2. Default: atom).
 - **path** - Feed path. (Default: atom.xml/rss2.xml).
 - **limit** - Maximum number of posts in the feed (Use `0` or `false` to show all posts. Default: 20).
