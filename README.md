@@ -16,7 +16,7 @@ npm install hexo-generator-multilingual-feed --save
 
 ## Options
 
-You can configure this plugin in `_config.yml`.
+You can configure this plugin in `_config.yml`:
 
 ``` yaml
 feed:
